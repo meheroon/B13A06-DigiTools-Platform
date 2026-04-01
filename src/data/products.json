@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Resume Builder Pro",
+    "description": "Create professional and ATS-friendly resumes within minutes.",
+    "price": 19,
+    "period": "monthly",
+    "tag": "popular",
+    "tagType": "Popular",
+    "features": [
+      "50+ modern resume templates",
+      "ATS-friendly formatting",
+      "Instant PDF export"
+    ],
+    "icon": "📄"
+  },
+  {
+    "id": 2,
+    "name": "Portfolio Creator",
+    "description": "Build a clean online portfolio to showcase your work and skills.",
+    "price": 29,
+    "period": "yearly",
+    "tag": "best",
+    "tagType": "Best Value",
+    "features": [
+      "Responsive portfolio layouts",
+      "Project gallery support",
+      "Easy customization"
+    ],
+    "icon": "💼"
+  },
+  {
+    "id": 3,
+    "name": "Invoice Generator",
+    "description": "Generate polished invoices for clients and business payments easily.",
+    "price": 12,
+    "period": "monthly",
+    "tag": "new",
+    "tagType": "New",
+    "features": [
+      "Editable invoice templates",
+      "Tax and discount options",
+      "Printable and downloadable"
+    ],
+    "icon": "🧾"
+  },
+  {
+    "id": 4,
+    "name": "Brand Kit Studio",
+    "description": "Design a strong brand identity with essential branding tools.",
+    "price": 39,
+    "period": "one-time",
+    "tag": "popular",
+    "tagType": "Popular",
+    "features": [
+      "Color palette generator",
+      "Typography suggestions",
+      "Logo presentation mockups"
+    ],
+    "icon": "🎨"
+  },
+  {
+    "id": 5,
+    "name": "AI Image Toolkit",
+    "description": "Create and enhance visuals for social media, websites, and products.",
+    "price": 24,
+    "period": "monthly",
+    "tag": "trending",
+    "tagType": "Trending",
+    "features": [
+      "Image enhancement",
+      "Quick background cleanup",
+      "Ready-made visual presets"
+    ],
+    "icon": "🖼️"
+  },
+  {
+    "id": 6,
+    "name": "SEO Audit Tool",
+    "description": "Analyze your website performance and improve search visibility.",
+    "price": 34,
+    "period": "yearly",
+    "tag": "pro",
+    "tagType": "Pro",
+    "features": [
+      "On-page SEO checks",
+      "Keyword insights",
+      "Performance recommendations"
+    ],
+    "icon": "📈"
+  }
+]

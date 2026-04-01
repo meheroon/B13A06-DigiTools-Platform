@@ -1,120 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useMemo, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import productsData from './data/products.json'
+import Navbar from './components/Navbar'
+import Banner from './components/Banner'
+import Stats from './components/Stats'
+import SectionToggle from './components/SectionToggle'
+import ProductList from './components/ProductList'
+import Cart from './components/Cart'
+import Steps from './components/Steps'
+import Pricing from './components/Pricing'
+import CTA from './components/CTA'
+import Footer from './components/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeSection, setActiveSection] = useState('products')
+  const [cartItems, setCartItems] = useState([])
+
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((total, item) => total + item.price, 0)
+  }, [cartItems])
+
+  const handleAddToCart = (product) => {
+    const alreadyAdded = cartItems.find((item) => item.id === product.id)
+
+    if (alreadyAdded) {
+      toast.warning(`${product.name} is already in your cart`)
+      return
+    }
+
+    setCartItems([...cartItems, product])
+    toast.success(`${product.name} added to cart`)
+  }
+
+  const handleRemoveFromCart = (id) => {
+    const removedItem = cartItems.find((item) => item.id === id)
+    const remainingItems = cartItems.filter((item) => item.id !== id)
+    setCartItems(remainingItems)
+
+    if (removedItem) {
+      toast.info(`${removedItem.name} removed from cart`)
+    }
+  }
+
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      toast.error('Your cart is empty')
+      return
+    }
+
+    setCartItems([])
+    toast.success('Proceeding to checkout')
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div>
+      <Navbar cartCount={cartItems.length} />
 
-      <div className="ticks"></div>
+      <Banner />
+      <Stats />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+      <section id="tools" className="py-16">
+        <div className="container-width">
+          <SectionToggle
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+            cartCount={cartItems.length}
+          />
+
+          {activeSection === 'products' ? (
+            <ProductList
+              products={productsData}
+              handleAddToCart={handleAddToCart}
+            />
+          ) : (
+            <Cart
+              cartItems={cartItems}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleCheckout={handleCheckout}
+              totalPrice={totalPrice}
+            />
+          )}
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <Steps />
+      <Pricing />
+      <CTA />
+      <Footer />
+
+      <ToastContainer position="top-right" autoClose={2000} />
+    </div>
   )
 }
 
