@@ -1,20 +1,34 @@
 const CTA = () => {
   return (
-    <section className="py-16">
-      <div className="container-width rounded-3xl bg-[#6d28d9] px-6 py-14 text-center text-white">
-        <h2 className="text-3xl font-bold md:text-4xl">
-          Ready to Transform Your Workflow?
+    <section id="cta" className="purple-gradient py-20 text-center text-white md:py-24">
+      <div className="container-width">
+        <h2 className="text-[38px] font-extrabold tracking-[-0.03em] md:text-[56px]">
+          Ready To Transform Your Workflow?
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-purple-100 md:text-base">
-          Start exploring digital tools built to improve creativity, productivity,
-          and professional growth in one simple platform.
+
+        <p className="mx-auto mt-5 max-w-[700px] text-[15px] leading-7 text-white/85">
+          Join thousands of professionals who are already using Digitools to work
+          smarter. Start your free trial today.
         </p>
-        <a
-          href="#tools"
-          className="mt-8 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#6d28d9] transition hover:bg-gray-100"
-        >
-          Explore Tools Now
-        </a>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="#tools"
+            className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#6f36f6]"
+          >
+            Explore Products
+          </a>
+          <a
+            href="#pricing"
+            className="rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white"
+          >
+            View Pricing
+          </a>
+        </div>
+
+        <p className="mt-6 text-[14px] text-white/75">
+          14-day free trial • No credit card required • Cancel anytime
+        </p>
       </div>
     </section>
   )

@@ -1,24 +1,19 @@
 import CartItem from './CartItem'
 
-const Cart = ({ cartItems, handleRemoveFromCart, handleCheckout, totalPrice }) => {
+const Cart = ({ cartItems, totalPrice, handleRemoveFromCart, handleCheckout }) => {
   return (
-    <div>
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold text-gray-900">Items in Digital Tools</h2>
-        <p className="mt-3 text-gray-600">
-          Review your selected tools before moving to checkout.
-        </p>
-      </div>
+    <div className="mx-auto max-w-[980px] rounded-[18px] border border-[#e8e8ee] bg-white p-5 shadow-[0_10px_30px_rgba(17,24,39,0.03)] md:p-6">
+      <h3 className="mb-6 text-[24px] font-bold text-[#1f2937]">Your Cart</h3>
 
       {cartItems.length === 0 ? (
-        <div className="mx-auto max-w-xl rounded-3xl bg-white p-10 text-center shadow-sm ring-1 ring-gray-200">
-          <h3 className="text-2xl font-bold text-gray-800">Your cart is empty</h3>
-          <p className="mt-3 text-gray-600">
-            Add your preferred digital tools from the products section.
+        <div className="rounded-[16px] bg-[#f6f7fb] px-6 py-14 text-center">
+          <p className="text-lg font-semibold text-[#1f2937]">Your cart is empty</p>
+          <p className="mt-2 text-sm text-[#7a8395]">
+            Add products from the Products tab to see them here.
           </p>
         </div>
       ) : (
-        <div className="mx-auto max-w-3xl rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
+        <>
           <div className="space-y-4">
             {cartItems.map((item) => (
               <CartItem
@@ -29,20 +24,20 @@ const Cart = ({ cartItems, handleRemoveFromCart, handleCheckout, totalPrice }) =
             ))}
           </div>
 
-          <div className="mt-8 border-t border-gray-200 pt-6">
-            <div className="mb-5 flex items-center justify-between">
-              <span className="text-lg font-semibold text-gray-700">Total Price</span>
-              <span className="text-2xl font-bold text-[#6d28d9]">${totalPrice}</span>
-            </div>
-
-            <button
-              onClick={handleCheckout}
-              className="w-full rounded-full bg-[#6d28d9] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#5b21b6]"
-            >
-              Proceed to Checkout
-            </button>
+          <div className="mt-6 flex items-center justify-between px-1">
+            <span className="text-[14px] text-[#7a8395]">Total:</span>
+            <span className="text-[36px] font-extrabold tracking-[-0.03em] text-[#20293d]">
+              ${totalPrice}
+            </span>
           </div>
-        </div>
+
+          <button
+            onClick={handleCheckout}
+            className="mt-4 w-full rounded-full purple-gradient px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(111,54,246,0.18)]"
+          >
+            Proceed To Checkout
+          </button>
+        </>
       )}
     </div>
   )

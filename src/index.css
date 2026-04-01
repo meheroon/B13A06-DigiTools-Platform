@@ -5,13 +5,51 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f8fafc;
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: #f7f8fb;
   color: #111827;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
 .container-width {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: min(1200px, 92%);
+  margin-inline: auto;
+}
+
+.purple-gradient {
+  background: linear-gradient(90deg, #5b34f2 0%, #9820f2 100%);
+}
+
+.purple-gradient-vertical {
+  background: linear-gradient(180deg, #5b34f2 0%, #9820f2 100%);
+}
+
+.soft-card {
+  border: 1px solid #e7e7ec;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.03);
+}
+
+.section-heading {
+  color: #1d2433;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 640px) {
+  .container-width {
+    width: min(100%, calc(100% - 28px));
+  }
 }

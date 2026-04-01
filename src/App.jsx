@@ -21,10 +21,11 @@ function App() {
   }, [cartItems])
 
   const handleAddToCart = (product) => {
-    const alreadyAdded = cartItems.find((item) => item.id === product.id)
+    const exists = cartItems.find((item) => item.id === product.id)
 
-    if (alreadyAdded) {
+    if (exists) {
       toast.warning(`${product.name} is already in your cart`)
+      setActiveSection('cart')
       return
     }
 
@@ -34,8 +35,7 @@ function App() {
 
   const handleRemoveFromCart = (id) => {
     const removedItem = cartItems.find((item) => item.id === id)
-    const remainingItems = cartItems.filter((item) => item.id !== id)
-    setCartItems(remainingItems)
+    setCartItems(cartItems.filter((item) => item.id !== id))
 
     if (removedItem) {
       toast.info(`${removedItem.name} removed from cart`)
@@ -49,18 +49,31 @@ function App() {
     }
 
     setCartItems([])
-    toast.success('Proceeding to checkout')
+    toast.success('Proceed to checkout successful')
   }
 
   return (
-    <div>
-      <Navbar cartCount={cartItems.length} />
+    <div className="bg-[#f7f8fb] text-[#111827]">
+      <Navbar
+        cartCount={cartItems.length}
+        setActiveSection={setActiveSection}
+      />
 
       <Banner />
       <Stats />
 
-      <section id="tools" className="py-16">
+      <section id="tools" className="bg-[#f7f8fb] py-18 md:py-24">
         <div className="container-width">
+          <div className="mx-auto max-w-[620px] text-center">
+            <h2 className="text-[34px] font-extrabold tracking-[-0.02em] text-[#1f2937] md:text-[52px]">
+              Premium Digital Tools
+            </h2>
+            <p className="mx-auto mt-3 max-w-[540px] text-sm leading-6 text-[#6b7280] md:text-[15px]">
+              Choose from our curated collection of premium digital products designed
+              to boost your productivity and creativity.
+            </p>
+          </div>
+
           <SectionToggle
             activeSection={activeSection}
             setActiveSection={setActiveSection}
@@ -75,9 +88,9 @@ function App() {
           ) : (
             <Cart
               cartItems={cartItems}
+              totalPrice={totalPrice}
               handleRemoveFromCart={handleRemoveFromCart}
               handleCheckout={handleCheckout}
-              totalPrice={totalPrice}
             />
           )}
         </div>
@@ -88,7 +101,13 @@ function App() {
       <CTA />
       <Footer />
 
-      <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer
+        position="top-right"
+        autoClose={1800}
+        hideProgressBar={false}
+        newestOnTop
+        pauseOnHover={false}
+      />
     </div>
   )
 }
